@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Entity
 
 @Table
-
 public class People {
 
     public int getId() {

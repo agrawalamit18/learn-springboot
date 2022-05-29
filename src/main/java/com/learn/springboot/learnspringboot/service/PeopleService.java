@@ -23,6 +23,10 @@ public class PeopleService {
         return peoples;
     }
 
+    public Optional<People> findById(int id) {
+        return repository.findById(id);
+    }
+
     public List<People> addPeople(People obj) {
         repository.save(obj);
         List<People> peoples = new ArrayList<People>();
