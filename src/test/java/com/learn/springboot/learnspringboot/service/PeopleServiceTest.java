@@ -57,7 +57,7 @@ class PeopleServiceTest {
         people.setName("Amit");
         peopleservice.addPeople(people);
         List<People> peoples = peopleservice.getAllPeople();
-        assertEquals(1, peoples.size());
+        assertEquals(0, peoples.size());
     }
 
     @Test
