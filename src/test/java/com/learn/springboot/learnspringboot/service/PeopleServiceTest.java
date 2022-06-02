@@ -29,7 +29,7 @@ class PeopleServiceTest {
         System.out.println("Running test case - Before setup");
         People people = new People();
         people.setId(1);
-        people.setName("Test");
+        people.setUserName("Test");
         Optional<People> pl = Optional.of(people);
         Mockito.when(peopleservice.findById(1)).thenReturn(pl);
     }
@@ -41,7 +41,7 @@ class PeopleServiceTest {
         if(peoples.isPresent()) {
             p = peoples.get();
         }
-        assertEquals(1, p.id);
+        assertEquals(1, p.getId());
     }
 
     @Test
@@ -54,7 +54,7 @@ class PeopleServiceTest {
     public void saveAndConfirmSave() {
         People people = new People();
         people.setId(1);
-        people.setName("Amit");
+        people.setUserName("Amit");
         peopleservice.addPeople(people);
         List<People> peoples = peopleservice.getAllPeople();
         assertEquals(0, peoples.size());

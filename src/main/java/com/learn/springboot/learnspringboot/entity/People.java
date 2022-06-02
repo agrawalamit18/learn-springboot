@@ -1,43 +1,81 @@
 package com.learn.springboot.learnspringboot.entity;
 
+import com.learn.springboot.learnspringboot.event.listener.AuditListener;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@EntityListeners(AuditListener.class)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table
+@Table (name = "people", schema = "NewApp")
 public class People {
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private static Log log = LogFactory.getLog(AuditListener.class);
     @Id
-    public int id;
+    private int id;
 
-    @Column
-    public String name;
+    @Column (name = "user_name", length = 50, nullable = false, unique = true)
+    private String userName;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private PeopleContact contact;
+
+    @Embedded
+    private PeopleE peopleContact;
+
+   // @OneToMany (targetEntity = PeopleFamily.class)
+   // private Set<PeopleFamily> family;
+
+    @Transient
+    private boolean member;
+
+    @Transient
+    private String uniqueId;
+
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    private enum Gender {
+        MALE,
+        FEMALE
+    }
+
+    @PrePersist
+    public void logNewUserAttempt() {
+    }
+
+    @PostPersist
+    public void logNewUserAdded() {
+    }
+
+    @PreRemove
+    public void logUserRemovalAttempt() {
+    }
+
+    @PostRemove
+    public void logUserRemoval() {
+    }
+
+    @PreUpdate
+    public void logUserUpdateAttempt() {
+    }
+
+    @PostUpdate
+    public void logUserUpdate() {
+    }
+
+    @PostLoad
+    public void logUserLoad() {
+        uniqueId = id+":"+ userName;
+        log.info("Loading data : ");
+    }
 }
