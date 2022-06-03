@@ -19,7 +19,9 @@ public class WebSecurityConfiguration {
             "/logout",
             "/getAllPeople",
             "/addPeople",
-            "/delete/*"
+            "/delete/*",
+            "/getAll",
+            "/findById"
     };
 
     @Bean

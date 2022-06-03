@@ -1,0 +1,16 @@
+schema{
+query: Query
+}
+
+type Query{
+getAll : [People]
+findById(id: Int) : People
+}
+
+type People{
+id: String
+userName: String
+email: String
+firstName: String
+lastName: [String]
+}

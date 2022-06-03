@@ -1,5 +1,17 @@
 # learn-springboot
 
+Modules covered
+- Core Spring
+- Spring boot
+- Spring AOP
+- Spring actuator
+- Spring Security
+- JPA/Hibernate
+- Exception handling
+- Annotation
+- Graphql
+- Kafka integration
+
 This example code will explain CI/CD integration
 
 - Code build using github action
