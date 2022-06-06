@@ -21,7 +21,8 @@ public class WebSecurityConfiguration {
             "/addPeople",
             "/delete/*",
             "/getAll",
-            "/findById"
+            "/findById",
+            "/addCustomer"
     };
 
     @Bean
