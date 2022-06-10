@@ -22,7 +22,11 @@ public class WebSecurityConfiguration {
             "/delete/*",
             "/getAll",
             "/findById",
-            "/addCustomer"
+            "/addCustomer",
+            "/swagger-ui",
+            "/getAllWithoutStream",
+            "/getAllWithStream",
+            "/getWelcomeText"
     };
 
     @Bean
